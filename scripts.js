@@ -1,19 +1,32 @@
 document.getElementById('authForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
 
-    const response = await fetch('/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-    });
+    const usernameField = document.getElementById('username');
+    const passwordField = document.getElementById('password');
+    const username = usernameField.value.trim();
+    const password = passwordField.value.trim();
 
-    if (response.ok) {
-        alert('Signup successful!');
-        document.getElementById('auth').style.display = 'none';
-        document.getElementById('storyCreator').style.display = 'block';
-    } else {
-        alert('Error: ' + (await response.text()));
+    if (!username || !password) {
+        alert('Username and password are required.');
+        return;
+    }
+
+    try {
+        const response = await fetch('/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password }),
+        });
+
+        if (response.ok) {
+            alert('Signup successful!');
+            document.getElementById('auth').style.display = 'none';
+            document.getElementById('storyCreator').style.display = 'block';
+        } else {
+            const errorText = await response.text();
+            alert('Error: ' + errorText);
+        }
+    } catch (error) {
+        alert('Network error: ' + error.message);
     }
 });
