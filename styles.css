@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    color: #333;
+    text-align: center;
+    margin: 0;
+}
+
+header {
+    background-color: #0066cc;
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+header .logo {
+    width: 50px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+main {
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+button {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
